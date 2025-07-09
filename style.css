@@ -103,5 +103,14 @@ All the SCSS File in SCSS Folder of Assets Folder. You can read the doc file als
  // footer - Section 
  @import 'footer';n facts */
 
+.service-row-spacing {
+    margin-bottom: 40px;
+}
+
+/* Correction du CamelCase sur le titre de la section services */
+.section-title h2.text-white {
+    text-transform: none;
+}
+
 
 
