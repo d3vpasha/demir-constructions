@@ -28,6 +28,200 @@
         <link rel="stylesheet" href="assets/css/nice-select.css">
         <!--<< Main.css >>-->
         <link rel="stylesheet" href="assets/css/main.css">
+        
+        <!-- Custom Carousel Styles -->
+        <style>
+            .project-gallery-carousel {
+                margin: 30px 0;
+            }
+            
+            .project-gallery-slider {
+                position: relative;
+                border-radius: 10px;
+                overflow: hidden;
+                box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            }
+            
+            .gallery-image {
+                position: relative;
+                height: 500px; /* Augmenté pour le format portrait */
+                overflow: hidden;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: #f8f9fa;
+            }
+            
+            .gallery-image img {
+                max-width: 100%;
+                max-height: 100%;
+                width: auto;
+                height: auto;
+                object-fit: contain; /* Changé pour garder les proportions */
+                transition: transform 0.3s ease;
+                border-radius: 8px;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            }
+            
+            .gallery-image:hover img {
+                transform: scale(1.05);
+            }
+            
+            .image-overlay {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: linear-gradient(transparent, rgba(0,0,0,0.7));
+                color: white;
+                padding: 20px;
+                transform: translateY(100%);
+                transition: transform 0.3s ease;
+            }
+            
+            .gallery-image:hover .image-overlay {
+                transform: translateY(0);
+            }
+            
+            .image-overlay h4 {
+                margin: 0;
+                font-size: 18px;
+                font-weight: 600;
+            }
+            
+            /* Swiper Navigation */
+            .project-gallery-slider .swiper-button-next,
+            .project-gallery-slider .swiper-button-prev {
+                background: rgba(255,255,255,0.9);
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                color: #2c5aa0;
+                margin-top: -25px;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+                transition: all 0.3s ease;
+            }
+            
+            .project-gallery-slider .swiper-button-next:hover,
+            .project-gallery-slider .swiper-button-prev:hover {
+                background: #2c5aa0;
+                color: white;
+                transform: scale(1.1);
+            }
+            
+            .project-gallery-slider .swiper-button-next:after,
+            .project-gallery-slider .swiper-button-prev:after {
+                font-size: 18px;
+                font-weight: bold;
+            }
+            
+            /* Swiper Pagination */
+            .project-gallery-slider .swiper-pagination {
+                bottom: 20px;
+            }
+            
+            .project-gallery-slider .swiper-pagination-bullet {
+                width: 12px;
+                height: 12px;
+                background: rgba(255,255,255,0.5);
+                opacity: 1;
+                transition: all 0.3s ease;
+            }
+            
+            .project-gallery-slider .swiper-pagination-bullet-active {
+                background: #2c5aa0;
+                transform: scale(1.2);
+            }
+            
+            /* Project Description */
+            .project-description {
+                background: #f8f9fa;
+                padding: 30px;
+                border-radius: 10px;
+                margin-top: 30px;
+            }
+            
+            .project-description .pro-details-cont h3 {
+                color: #2c5aa0;
+                margin-bottom: 15px;
+                font-size: 20px;
+            }
+            
+            .project-description .pro-details-cont p {
+                color: #666;
+                line-height: 1.6;
+                margin-bottom: 0;
+            }
+            
+            /* Image principale limitée en taille */
+            .project-image {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: #f8f9fa;
+                border-radius: 10px;
+                overflow: hidden;
+                margin-bottom: 30px;
+                padding: 20px;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            }
+            
+            .project-image img {
+                max-width: 400px;
+                max-height: 500px;
+                width: auto;
+                height: auto;
+                object-fit: contain;
+                border-radius: 8px;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            }
+            
+            @media (max-width: 768px) {
+                .gallery-image {
+                    height: 350px; /* Adapté pour mobile */
+                }
+                
+                .image-overlay {
+                    transform: translateY(0);
+                    background: rgba(0,0,0,0.5);
+                }
+                
+                .project-gallery-slider .swiper-button-next,
+                .project-gallery-slider .swiper-button-prev {
+                    width: 40px;
+                    height: 40px;
+                    margin-top: -20px;
+                }
+                
+                .project-description {
+                    padding: 20px;
+                }
+                
+                /* Image principale responsive */
+                .project-image img {
+                    max-width: 300px;
+                    max-height: 400px;
+                }
+            }
+            
+            @media (min-width: 992px) {
+                .gallery-image {
+                    height: 600px; /* Plus grand sur desktop pour le format portrait */
+                }
+            }
+            
+            @media (max-width: 576px) {
+                .gallery-image {
+                    height: 280px; /* Plus petit sur très petits écrans */
+                }
+                
+                /* Image principale très petits écrans */
+                .project-image img {
+                    max-width: 250px;
+                    max-height: 350px;
+                }
+            }
+        </style>
         <!--<< Style.css >>-->
         <link rel="stylesheet" href="style.css">
     </head>
@@ -277,177 +471,164 @@
 
         <!--<< Breadcrumb Section Start >>-->
         <div class="breadcrumb-wrapper section-padding bg-cover" style="background-image: url('assets/img/breadcrumb.png');">
-            <div class="container">
-                <div class="page-heading">
-                    <h1 class="wow fadeInUp" data-wow-delay=".3s">Projets</h1>
-                    <ul class="breadcrumb-items wow fadeInUp" data-wow-delay=".5s">
-                        <li>
-                            <a href="index.html">
-                            Accueil
-                            </a>
-                        </li>
-                        <li>
-                            <i class="fas fa-chevron-right"></i>
-                        </li>
-                        <li>
-                            Projets
-                        </li>
-                    </ul>
-                </div>
+        <div class="container">
+            <div class="page-heading">
+                <h1 class="wow fadeInUp" data-wow-delay=".3s" style="text-transform: none;">Réfection d'une cuisine</h1>
             </div>
         </div>
+        </div>
 
-        <!-- Portfolio Section Start -->
-        <section class="portfolio-section fix section-padding">
-            <div class="portfolio-wrapper style-2">
-                <div class="row g-4">
-                    <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-6">
-                        <div class="portfolio-items">
-                            <div class="portfolio-image bg-cover" style="background-image: url('assets/img/portfolio/01.jpg');">
-                                <div class="portfolio-content">
-                                    <a href="project-1.html" class="icon">
-                                        <i class="fas fa-long-arrow-right"></i>
-                                    </a>
-                                    <h3>
-                                        <a href="project-details.html" style="text-transform: none;">Réfection d'une cuisine</a>
-                                    </h3>
-                                    <p>
-                                        Aménagement complet cuisine : <br>isolation, placoplâtre, peinture et création intégrale."
-                                    </p>
+        <!-- Service Details Section Start -->
+        <section class="service-details-section fix section-padding">
+            <div class="container">
+                <div class="project-details-wrapper">
+                    <div class="row g-4">
+                        <div class="col-12 col-lg-4 order-2 order-md-1">
+                            <div class="main-sidebar">
+                                <div class="single-sidebar-widget">
+                                    <div class="project-catagory">
+                                        <ul>
+                                            <li>
+                                                Client
+                                                <span>Interior Design</span>
+                                            </li>
+                                            <li>
+                                                Year 
+                                                <span>December,2024</span>
+                                            </li>
+                                            <li>
+                                                Author
+                                                <span>Shikhon Islam</span>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
-                             </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-8 order-1 order-md-2">
+                            <div class="project-details-items">
+                                <div class="project-image">
+                                    <img src="assets/img/project/1/7.jpg" alt="img">
+                                </div>
+                                <div class="project-details-content">
+                                    <h2 style="text-transform:none;">Réfection d'une cuisine</h2>
+                                    <p>
+                                        Nous avons réalisé une réfection complète de trois murs côté cuisine
+                                    </p>
+                                    <ul class="d-list">
+                                        <li>
+                                            <i class="far fa-chevron-double-right"></i>
+                                            la pose d'isolation
+                                        </li>
+                                        <li>
+                                            <i class="far fa-chevron-double-right"></i>
+                                            la pose de placoplâtre
+                                        </li>
+                                        <li>
+                                            <i class="far fa-chevron-double-right"></i>
+                                            la peinture
+                                        </li>
+                                        <li>
+                                            <i class="far fa-chevron-double-right"></i>
+                                            l'installation de la cuisine
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="pro-details-items">
+                                    <!-- Carrousel d'images -->
+                                    <div class="project-gallery-carousel">
+                                        <div class="swiper project-gallery-slider">
+                                            <div class="swiper-wrapper">
+                                                <div class="swiper-slide">
+                                                    <div class="gallery-image">
+                                                        <img src="assets/img/project/1/1.jpg" alt="Réfection cuisine - Avant">
+                                                        <div class="image-overlay">
+                                                            <h4 style="text-transform:none;">Avant travaux</h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <div class="gallery-image">
+                                                        <img src="assets/img/project/1/2.jpg" alt="Réfection cuisine - Pendant">
+                                                        <div class="image-overlay">
+                                                            <h4 style="text-transform:none;">Pose des rails</h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <div class="gallery-image">
+                                                        <img src="assets/img/project/1/3.jpg" alt="Réfection cuisine - Pendant">
+                                                        <div class="image-overlay">
+                                                            <h4 style="text-transform:none;">Pose du placo</h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <div class="gallery-image">
+                                                        <img src="assets/img/project/1/4.jpg" alt="Bandes de finitions">
+                                                        <div class="image-overlay">
+                                                            <h4 style="text-transform:none;">Bandes de finitions</h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <div class="gallery-image">
+                                                        <img src="assets/img/project/1/5.jpg" alt="Enduit et peinture">
+                                                        <div class="image-overlay">
+                                                            <h4 style="text-transform:none;">Enduit et peinture</h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <div class="gallery-image">
+                                                        <img src="assets/img/project/1/6.jpg" alt="Résultat final">
+                                                        <div class="image-overlay">
+                                                            <h4 style="text-transform:none;">Résultat final</h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <div class="gallery-image">
+                                                        <img src="assets/img/project/1/7.jpg" alt="Résultat final">
+                                                        <div class="image-overlay">
+                                                            <h4 style="text-transform:none;">Résultat final</h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Navigation buttons -->
+                                            <div class="swiper-button-next"></div>
+                                            <div class="swiper-button-prev"></div>
+                                            <!-- Pagination -->
+                                            <div class="swiper-pagination"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Description du projet -->
+                                    <!-- <div class="project-description mt-4">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="pro-details-cont">
+                                                    <h3>Aménagement complet cuisine</h3>
+                                                    <p>
+                                                        Isolation, placoplâtre, peinture et création intégrale d'une cuisine sur-mesure adaptée aux besoins du client.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="pro-details-cont">
+                                                    <h3>Finitions professionnelles</h3>
+                                                    <p>
+                                                        Travaux de qualité incluant l'isolation thermique, la pose de cloisons et les finitions peinture pour un rendu impeccable.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-6">
-                        <div class="portfolio-items">
-                            <div class="portfolio-image bg-cover" style="background-image: url('assets/img/portfolio/02.jpg');">
-                                <div class="portfolio-content">
-                                    <a href="project-details.html" class="icon">
-                                        <i class="fas fa-long-arrow-right"></i>
-                                    </a>
-                                    <h3>
-                                        <a href="project-details.html">Interior Perfection</a>
-                                    </h3>
-                                    <p>
-                                        This category focuses on the design and <br> construction of buildings
-                                    </p>
-                                </div>
-                             </div>
-                        </div>
-                    </div>
-                    <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-6">
-                        <div class="portfolio-items">
-                            <div class="portfolio-image bg-cover" style="background-image: url('assets/img/portfolio/03.jpg');">
-                                <div class="portfolio-content">
-                                    <a href="project-details.html" class="icon">
-                                        <i class="fas fa-long-arrow-right"></i>
-                                    </a>
-                                    <h3>
-                                        <a href="project-details.html">Interior Perfection</a>
-                                    </h3>
-                                    <p>
-                                        This category focuses on the design and <br> construction of buildings
-                                    </p>
-                                </div>
-                             </div>
-                        </div>
-                    </div>
-                    <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-6">
-                        <div class="portfolio-items">
-                            <div class="portfolio-image bg-cover" style="background-image: url('assets/img/portfolio/04.jpg');">
-                                <div class="portfolio-content">
-                                    <a href="project-details.html" class="icon">
-                                        <i class="fas fa-long-arrow-right"></i>
-                                    </a>
-                                    <h3>
-                                        <a href="project-details.html">Interior Perfection</a>
-                                    </h3>
-                                    <p>
-                                        This category focuses on the design and <br> construction of buildings
-                                    </p>
-                                </div>
-                             </div>
-                        </div>
-                    </div>
-                    <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-6">
-                        <div class="portfolio-items">
-                            <div class="portfolio-image bg-cover" style="background-image: url('assets/img/portfolio/12.jpg');">
-                                <div class="portfolio-content">
-                                    <a href="project-details.html" class="icon">
-                                        <i class="fas fa-long-arrow-right"></i>
-                                    </a>
-                                    <h3>
-                                        <a href="project-details.html">Interior Perfection</a>
-                                    </h3>
-                                    <p>
-                                        This category focuses on the design and <br> construction of buildings
-                                    </p>
-                                </div>
-                             </div>
-                        </div>
-                    </div>
-                    <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-6">
-                        <div class="portfolio-items">
-                            <div class="portfolio-image bg-cover" style="background-image: url('assets/img/portfolio/13.jpg');">
-                                <div class="portfolio-content">
-                                    <a href="project-details.html" class="icon">
-                                        <i class="fas fa-long-arrow-right"></i>
-                                    </a>
-                                    <h3>
-                                        <a href="project-details.html">Interior Perfection</a>
-                                    </h3>
-                                    <p>
-                                        This category focuses on the design and <br> construction of buildings
-                                    </p>
-                                </div>
-                             </div>
-                        </div>
-                    </div>
-                    <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-6">
-                        <div class="portfolio-items">
-                            <div class="portfolio-image bg-cover" style="background-image: url('assets/img/portfolio/14.jpg');">
-                                <div class="portfolio-content">
-                                    <a href="project-details.html" class="icon">
-                                        <i class="fas fa-long-arrow-right"></i>
-                                    </a>
-                                    <h3>
-                                        <a href="project-details.html">Interior Perfection</a>
-                                    </h3>
-                                    <p>
-                                        This category focuses on the design and <br> construction of buildings
-                                    </p>
-                                </div>
-                             </div>
-                        </div>
-                    </div>
-                    <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-6">
-                        <div class="portfolio-items">
-                            <div class="portfolio-image bg-cover" style="background-image: url('assets/img/portfolio/15.jpg');">
-                                <div class="portfolio-content">
-                                    <a href="project-details.html" class="icon">
-                                        <i class="fas fa-long-arrow-right"></i>
-                                    </a>
-                                    <h3>
-                                        <a href="project-details.html">Interior Perfection</a>
-                                    </h3>
-                                    <p>
-                                        This category focuses on the design and <br> construction of buildings
-                                    </p>
-                                </div>
-                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="page-nav-wrap mt-5 text-center">
-                    <ul>
-                        <li><a class="page-numbers" href="#"><i class="fal fa-long-arrow-left"></i></a></li>
-                        <li><a class="page-numbers" href="#">01</a></li>
-                        <li><a class="page-numbers" href="#">02</a></li>
-                        <li><a class="page-numbers" href="#">..</a></li>
-                        <li><a class="page-numbers" href="#">10</a></li>
-                        <li><a class="page-numbers" href="#">11</a></li>
-                        <li><a class="page-numbers" href="#"><i class="fal fa-long-arrow-right"></i></a></li>
-                    </ul>
                 </div>
             </div>
         </section>
@@ -642,5 +823,52 @@
         <script src="assets/js/wow.min.js"></script>
         <!--<< Main.js >>-->
         <script src="assets/js/main.js"></script>
+        
+        <!-- Initialize Project Gallery Carousel -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Initialize project gallery carousel
+                const projectGallerySwiper = new Swiper('.project-gallery-slider', {
+                    loop: true,
+                    autoplay: {
+                        delay: 4000,
+                        disableOnInteraction: false,
+                    },
+                    speed: 800,
+                    effect: 'slide',
+                    slidesPerView: 1,
+                    spaceBetween: 0,
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
+                    pagination: {
+                        el: '.swiper-pagination',
+                        clickable: true,
+                        dynamicBullets: true,
+                    },
+                    // Responsive breakpoints
+                    breakpoints: {
+                        768: {
+                            autoplay: {
+                                delay: 5000,
+                            },
+                        }
+                    }
+                });
+                
+                // Pause autoplay on hover
+                const galleryContainer = document.querySelector('.project-gallery-slider');
+                if (galleryContainer) {
+                    galleryContainer.addEventListener('mouseenter', () => {
+                        projectGallerySwiper.autoplay.stop();
+                    });
+                    
+                    galleryContainer.addEventListener('mouseleave', () => {
+                        projectGallerySwiper.autoplay.start();
+                    });
+                }
+            });
+        </script>
     </body>
 </html>
