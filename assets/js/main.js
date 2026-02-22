@@ -68,7 +68,19 @@
         //>> Nice Select Start <<//
         $('select').niceSelect();
 
-         //>> Scroll Js Start <<//
+         //>> Anchor Smooth Scroll with Sticky Header Offset <<//
+        $('a[href^="#"]').not('[href="#"]').on('click', function(e) {
+            var target = $(this.getAttribute('href'));
+            if (target.length) {
+                e.preventDefault();
+                var headerHeight = $('#header-sticky').outerHeight() || 0;
+                $('html, body').animate({
+                    scrollTop: target.offset().top - headerHeight
+                }, 600);
+            }
+        });
+
+        //>> Scroll Js Start <<//
          const scrollPath = document.querySelector(".scroll-up path");
          const pathLength = scrollPath.getTotalLength();
          scrollPath.style.transition = scrollPath.style.WebkitTransition = "none";
