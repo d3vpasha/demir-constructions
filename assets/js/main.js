@@ -562,36 +562,6 @@
             $(".payment").html(paymentMethod);
         });
 
-        //>> Search Popup Start <<//
-        const $searchWrap = $(".search-wrap");
-        const $navSearch = $(".nav-search");
-        const $searchClose = $("#search-close");
-
-        $(".search-trigger").on("click", function (e) {
-            e.preventDefault();
-            $searchWrap.animate({ opacity: "toggle" }, 500);
-            $navSearch.add($searchClose).addClass("open");
-        });
-
-        $(".search-close").on("click", function (e) {
-            e.preventDefault();
-            $searchWrap.animate({ opacity: "toggle" }, 500);
-            $navSearch.add($searchClose).removeClass("open");
-        });
-
-        function closeSearch() {
-            $searchWrap.fadeOut(200);
-            $navSearch.add($searchClose).removeClass("open");
-        }
-
-        $(document.body).on("click", function (e) {
-            closeSearch();
-        });
-
-        $(".search-trigger, .main-search-input").on("click", function (e) {
-            e.stopPropagation();
-        });
-
 
     }); // End Document Ready Function
 
